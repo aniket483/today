@@ -1,0 +1,38 @@
+Project 2: Book Catalog System
+
+Creating Database Schema
+
+Note: Creating database schema for the project must be done individually.
+
+1. Create Database Schemas for following tables with the required constraints as provided.
+	a. Create the table Books with following attributes,
+		• Book Id (Primary Key)
+		• Title (Not Null)
+		• ISBN (ISBN Number which is a Unique Key, Not Null)
+		• Publication year (Not Null)
+		• Publisher Id (Foreign Key referencing Publishers, add ON DELETE CASCADE constraint)
+		• Category Id (Foreign Key referencing Categories, add ON DELETE CASCADE constraint)
+		• Author Name (Add CHECK constraint to ensure Author Name is not null)
+	b. Add some dummy data in the Books table.
+	c. Create the table Categories with following attributes,
+		• Category Id (Primary Key)
+		• Category Name (Unique Key, Not Null)
+	d. Add some dummy data in the Categories table.
+	e. Create the table Publishers with following attributes,
+		• Publisher Id (Primary Key)
+		• Publisher Name (Not Null)
+	f. Add some dummy data in the Publishers table.
+	g. Create the table Users with following attributes,
+		• User Id (Primary Key)
+		• Username (Not Null)
+		• Email (Unique Key, Not Null)
+		• Phone Number (Unique Key, Not Null)
+	h. Add some dummy data in the Users table.
+	i. Create the table Borrowings with following attributes,
+		• Borrow Id (Primary Key)
+		• User Id (Foreign Key referencing Users, add ON DELETE CASCADE constraint)
+		• Book Id (Foreign Key referencing Books, add ON DELETE CASCADE constraint)
+		• Borrow Date (Not Null)
+		• Return Date (Not Null)
+	j. Add some dummy data in the Borrowings table.
+	k. Write a Query to fetch the records of all the above tables
