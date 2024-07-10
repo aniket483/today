@@ -1,0 +1,60 @@
+create database mini_project;
+use mini_project;
+
+create table categories(category_id int primary key, category_name varchar(20) unique key not null);
+desc categories;
+insert into categories values(101,'Fiction'),
+(102,'Horror'),
+(103,'Classics'),
+(104,'Romantic'),
+(105,'Fantasy'),
+(106,'Thriller');
+select * from categories;
+
+create table publishers(publisher_id int primary key,publisher_name varchar(30) not null);
+desc publishers;
+insert into publishers values(1001,'Arihant Publishers'),
+(1002,'ABC Publishers'),
+(1003,'XYZ Publishers'),
+(1004,'MLA Publisers');
+select * from publishers;
+
+create table users(user_id int primary key,username varchar(30) not null,email varchar(40) unique key not null,phone_number int(10) unique key not null);
+desc users;
+insert into users values(2001,'Aniket','aniket@gmail.com',906325814),
+(2002,'Kiran','kiran@gmail.com',987643210),
+(2003,'Umesh','umesh12@gmail.com',963820741),
+(2004,'Madhu','madhu789@gmail.com',850741963),
+(2005,'Rachit','rachit23@gmail.com',967415852);
+select * from users;
+
+create table books(book_id int primary key,title varchar(40) not null, isbn int unique key not null,publication_year int not null,publisher_id int, category_id int,author_name varchar(20),
+foreign key(publisher_id) references publishers(publisher_id) on delete cascade,
+foreign key(category_id) references categories(category_id) on delete cascade,
+check(author_name is not null));
+desc books;
+insert into books values(10001,'One of us if lying',2024101,1997,1003,101,'Karen M'),
+(10002,'The Reaper',2024102,2008,1001,101,'Runnyx'),
+(10003,'That Night',2024103,2021,1003,102,'Nidhi'),
+(10004,'Haunted Hill',2024104,2024,1002,102,'Ruskin Bond'),
+(10005,'Sherlock Homes',2024105,2022,1004,102,'Arthur Conan'),
+(10006,'Pride and Prejudice',2024106,1946,1003,103,'Jane Austen'),
+(10007,'Classic Penguin',2024107,1988,1002,103,'Paul Buckley'),
+(10008,'Technically Yours',2024108,2023,1001,104,'Denise Williams'),
+(10009,'Best Wife',2024109,2000,1004,104,'Ajay Pandey'),
+(10010,'Lord of the Rings',2024110,2014,1001,105,'Karen M'),
+(10011,'Silent Patient',2024111,2020,1002,106,'Alex Mcfield'),
+(10012,'Samsara',2024112,2022,1003,106,'Saksham Gard'),
+(10013,'Chalk Man',2024113,2024,1004,106,'C J Tudor'),
+(10014,'Highway Murders',2024114,2021,1002,106,'Sourabh Mukhrjee'),
+(10015,'Hybrid Man',2024115,2015,1001,106,'Richard Ross');
+select * from books;
+
+create table borrowings(borrow_id int primary key,user_id int,book_id int,borrow_date date not null,return_date date not null,
+foreign key(user_id) references users(user_id) on delete cascade,
+foreign key(book_id) references books(book_id) on delete cascade);
+desc borrowings;
+insert into borrowings values(9001,2002,10007,'2024-06-24','2024-07-02'),
+(9002,2005,10011,'2024-01-1','2024-07-09'),
+(9003,2001,10002,'2024-06-21','2024-07-04');
+select * from borrowings;
