@@ -1,60 +1,553 @@
-create database mini_project;
-use mini_project;
+Mini Project - 1  
 
-create table categories(category_id int primary key, category_name varchar(20) unique key not null);
-desc categories;
-insert into categories values(101,'Fiction'),
-(102,'Horror'),
-(103,'Classics'),
-(104,'Romantic'),
-(105,'Fantasy'),
-(106,'Thriller');
-select * from categories;
+ 
 
-create table publishers(publisher_id int primary key,publisher_name varchar(30) not null);
-desc publishers;
-insert into publishers values(1001,'Arihant Publishers'),
-(1002,'ABC Publishers'),
-(1003,'XYZ Publishers'),
-(1004,'MLA Publisers');
-select * from publishers;
+Submitted by: Aniket Singh (Employee ID - 2605511) 
 
-create table users(user_id int primary key,username varchar(30) not null,email varchar(40) unique key not null,phone_number int(10) unique key not null);
-desc users;
-insert into users values(2001,'Aniket','aniket@gmail.com',906325814),
-(2002,'Kiran','kiran@gmail.com',987643210),
-(2003,'Umesh','umesh12@gmail.com',963820741),
-(2004,'Madhu','madhu789@gmail.com',850741963),
-(2005,'Rachit','rachit23@gmail.com',967415852);
-select * from users;
+ 
 
-create table books(book_id int primary key,title varchar(40) not null, isbn int unique key not null,publication_year int not null,publisher_id int, category_id int,author_name varchar(20),
-foreign key(publisher_id) references publishers(publisher_id) on delete cascade,
-foreign key(category_id) references categories(category_id) on delete cascade,
-check(author_name is not null));
-desc books;
-insert into books values(10001,'One of us if lying',2024101,1997,1003,101,'Karen M'),
-(10002,'The Reaper',2024102,2008,1001,101,'Runnyx'),
-(10003,'That Night',2024103,2021,1003,102,'Nidhi'),
-(10004,'Haunted Hill',2024104,2024,1002,102,'Ruskin Bond'),
-(10005,'Sherlock Homes',2024105,2022,1004,102,'Arthur Conan'),
-(10006,'Pride and Prejudice',2024106,1946,1003,103,'Jane Austen'),
-(10007,'Classic Penguin',2024107,1988,1002,103,'Paul Buckley'),
-(10008,'Technically Yours',2024108,2023,1001,104,'Denise Williams'),
-(10009,'Best Wife',2024109,2000,1004,104,'Ajay Pandey'),
-(10010,'Lord of the Rings',2024110,2014,1001,105,'Karen M'),
-(10011,'Silent Patient',2024111,2020,1002,106,'Alex Mcfield'),
-(10012,'Samsara',2024112,2022,1003,106,'Saksham Gard'),
-(10013,'Chalk Man',2024113,2024,1004,106,'C J Tudor'),
-(10014,'Highway Murders',2024114,2021,1002,106,'Sourabh Mukhrjee'),
-(10015,'Hybrid Man',2024115,2015,1001,106,'Richard Ross');
-select * from books;
+ 
 
-create table borrowings(borrow_id int primary key,user_id int,book_id int,borrow_date date not null,return_date date not null,
-foreign key(user_id) references users(user_id) on delete cascade,
-foreign key(book_id) references books(book_id) on delete cascade);
-desc borrowings;
-insert into borrowings values(9001,2002,10007,'2024-06-24','2024-07-02'),
-(9002,2005,10011,'2024-01-1','2024-07-09'),
-(9003,2001,10002,'2024-06-21','2024-07-04');
-select * from borrowings;
+Problem Statement -  
+
+Project 2: Book Catalog System  
+
+Creating Database Schema 
+
+ 
+
+ 
+
+ 
+
+Create Database Schemas for following tables with the required constraints as provided.  
+
+ 
+
+Query -  
+
+create database mini_project; 
+
+use mini_project; 
+
+ 
+
+Create the table Books with following attributes,  
+
+Book Id (Primary Key)  
+
+Title (Not Null)  
+
+ISBN (ISBN Number, which is a Unique Key, Not Null)  
+
+Publication year (Not Null)  
+
+Publisher Id (Foreign Key referencing Publishers, add ON DELETE CASCADE constraint)  
+
+Category Id (Foreign Key referencing Categories, add ON DELETE CASCADE constraint)  
+
+Author Name (Add CHECK constraint to ensure Author Name is not null)  
+
+ 
+
+Query -  
+
+ 
+
+CREATE TABLE books(book_id INT PRIMARY KEY, 
+
+title VARCHAR(40) NOT NULL,  
+
+isbn INT UNIQUE KEY NOT NULL, 
+
+publication_year INT NOT NULL, 
+
+publisher_id INT, category_id INT, 
+
+author_name VARCHAR(20), 
+
+FOREIGN KEY(publisher_id) REFERENCES publishers(publisher_id) ON DELETE CASCADE, 
+
+FOREIGN KEY(category_id) REFERENCES categories(category_id) ON DELETE CASCADE, 
+
+CHECK(author_name IS NOT NULL)); 
+
+DESC books; 
+
+ 
+
+ 
+
+Add some dummy data to the Books table.  
+
+ 
+
+Query - 
+
+ 
+
+INSERT INTO books VALUES(10001,'One of us if lying',2024101,1997,1003,101,'Karen M'), 
+
+(10002,'The Reaper',2024102,2008,1001,101,'Runnyx'), 
+
+(10003,'That Night',2024103,2021,1003,102,'Nidhi'), 
+
+(10004,'Haunted Hill',2024104,2024,1002,102,'Ruskin Bond'), 
+
+(10005,'Sherlock Homes',2024105,2022,1004,102,'Arthur Conan'), 
+
+(10006,'Pride and Prejudice',2024106,1946,1003,103,'Jane Austen'), 
+
+(10007,'Classic Penguin',2024107,1988,1002,103,'Paul Buckley'), 
+
+(10008,'Technically Yours',2024108,2023,1001,104,'Denise Williams'), 
+
+(10009,'Best Wife',2024109,2000,1004,104,'Ajay Pandey'), 
+
+(10010,'Lord of the Rings',2024110,2014,1001,105,'Karen M'), 
+
+(10011,'Silent Patient',2024111,2020,1002,106,'Alex Mcfield'), 
+
+(10012,'Samsara',2024112,2022,1003,106,'Saksham Gard'), 
+
+(10013,'Chalk Man',2024113,2024,1004,106,'C J Tudor'), 
+
+(10014,'Highway Murders',2024114,2021,1002,106,'Sourabh Mukhrjee'), 
+
+(10015,'Hybrid Man',2024115,2015,1001,106,'Richard Ross'); 
+
+ 
+
+Create the table Categories with following attributes,  
+
+Category Id (Primary Key)  
+
+Category Name (Unique Key, Not Null)  
+
+ 
+
+Query - 
+
+ 
+
+CREATE TABLE categories(category_id INT PRIMARY KEY,  
+
+category_name VARCHAR(20) UNIQUE KEY NOT NULL); 
+
+DESC categories; 
+
+ 
+
+ 
+
+Add some dummy data to the Categories table.  
+
+ 
+
+Query - 
+
+ 
+
+INSERT INTO categories VALUES(101,'Fiction'), 
+
+(102,'Horror'), 
+
+(103,'Classics'), 
+
+(104,'Romantic'), 
+
+(105,'Fantasy'), 
+
+(106,'Thriller'); 
+
+ 
+
+ 
+
+Create the table Publishers with following attributes,  
+
+Publisher Id (Primary Key)  
+
+Publisher Name (Not Null)  
+
+ 
+
+Query - 
+
+ 
+
+CREATE TABLE publishers(publisher_id INT PRIMARY KEY, 
+
+publisher_name VARCHAR(30) NOT NULL); 
+
+DESC publishers; 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Add some dummy data to the Publishers table.  
+
+ 
+
+ 
+
+Query - 
+
+ 
+
+INSERT INTO publishers VALUES(1001,'Arihant Publishers'), 
+
+(1002,'ABC Publishers'), 
+
+(1003,'XYZ Publishers'), 
+
+(1004,'MLA Publisers'); 
+
+ 
+
+ 
+
+Create the table Users with following attributes,  
+
+User Id (Primary Key)  
+
+Username (Not Null)  
+
+Email (Unique Key, Not Null)  
+
+Phone Number (Unique Key, Not Null)  
+
+ 
+
+Query - 
+
+ 
+
+CREATE TABLE users(user_id INT PRIMARY KEY, 
+
+username VARCHAR(30) NOT NULL, 
+
+email VARCHAR(40) UNIQUE KEY NOT NULL, 
+
+phone_number INT(10) UNIQUE KEY NOT NULL); 
+
+DESC users; 
+
+ 
+
+ 
+
+Add some dummy data to the Users table.  
+
+ 
+
+Query - 
+
+ 
+
+INSERT INTO users VALUES(2001,'Aniket','aniket@gmail.com',906325814), 
+
+(2002,'Kiran','kiran@gmail.com',987643210), 
+
+(2003,'Umesh','umesh12@gmail.com',963820741), 
+
+(2004,'Madhu','madhu789@gmail.com',850741963), 
+
+(2005,'Rachit','rachit23@gmail.com',967415852); 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Create the table Borrowings with following attributes,  
+
+Borrow Id (Primary Key)  
+
+User Id (Foreign Key referencing Users, add ON DELETE CASCADE constraint)  
+
+Book Id (Foreign Key referencing Books, add ON DELETE CASCADE constraint)  
+
+Borrow Date (Not Null)  
+
+Return Date (Not Null)  
+
+ 
+
+Query - 
+
+ 
+
+CREATE TABLE borrowings(borrow_id INT PRIMARY KEY, 
+
+user_id INT, 
+
+book_id INT, 
+
+borrow_date DATE NOT NULL, 
+
+return_date DATE NOT NULL, 
+
+FOREIGN key (user_id) REFERENCES users(user_id) ON DELETE CASCADE, 
+
+FOREIGN KEY(book_id) REFERENCES books(book_id) ON DELETE CASCADE); 
+
+DESC borrowings; 
+
+ 
+
+ 
+
+Add some dummy data in the Borrowings table.  
+
+ 
+
+Query - 
+
+ 
+
+INSERT INTO borrowings VALUES(9001,2002,10007,'2024-06-24','2024-07-02'),(9002,2005,10011,'2024-01-1','2024-07-09'), 
+
+(9003,2001,10002,'2024-06-21','2024-07-04'); 
+
+ 
+
+ 
+
+Write a Query to fetch the records of all the above tables 
+
+ 
+
+Query – To view all tables 
+
+ 
+
+SELECT * FROM categories; 
+
+SELECT * FROM publishers; 
+
+SELECT * FROM users; 
+
+SELECT * FROM books; 
+
+SELECT * FROM borrowings; 
+
+ 
+
+ 
+
+Query – To view common rows of all tables using joins 
+
+ 
+
+SELECT * from books b  
+
+join publishers p on (b.publisher_id=p.publisher_id)  
+
+join categories c on (b.category_id=c.category_id)  
+
+join borrowings br on (b.book_id=br.book_id)  
+
+join users u on (br.user_id=u.user_id); 
+
+ 
+
+ 
+
+ 
+
+Appendix - A (FULL CODE) 
+
+ 
+
+CREATE DATABASE mini_project; 
+
+USE mini_project; 
+
+  
+
+  
+
+CREATE TABLE categories(category_id INT PRIMARY KEY,  
+
+category_name VARCHAR(20) UNIQUE KEY NOT NULL); 
+
+DESC categories; 
+
+INSERT INTO categories VALUES(101,'Fiction'), 
+
+(102,'Horror'), 
+
+(103,'Classics'), 
+
+(104,'Romantic'), 
+
+(105,'Fantasy'), 
+
+(106,'Thriller'); 
+
+  
+
+  
+
+CREATE TABLE publishers(publisher_id INT PRIMARY KEY, 
+
+publisher_name VARCHAR(30) NOT NULL); 
+
+DESC publishers; 
+
+INSERT INTO publishers VALUES(1001,'Arihant Publishers'), 
+
+(1002,'ABC Publishers'), 
+
+(1003,'XYZ Publishers'), 
+
+(1004,'MLA Publisers'); 
+
+  
+
+  
+
+CREATE TABLE users(user_id INT PRIMARY KEY, 
+
+username VARCHAR(30) NOT NULL, 
+
+email VARCHAR(40) UNIQUE KEY NOT NULL, 
+
+phone_number INT(10) UNIQUE KEY NOT NULL); 
+
+DESC users; 
+
+INSERT INTO users VALUES(2001,'Aniket','aniket@gmail.com',906325814), 
+
+(2002,'Kiran','kiran@gmail.com',987643210), 
+
+(2003,'Umesh','umesh12@gmail.com',963820741), 
+
+(2004,'Madhu','madhu789@gmail.com',850741963), 
+
+(2005,'Rachit','rachit23@gmail.com',967415852); 
+
+  
+
+  
+
+CREATE TABLE books(book_id INT PRIMARY KEY, 
+
+title VARCHAR(40) NOT NULL,  
+
+isbn INT UNIQUE KEY NOT NULL, 
+
+publication_year INT NOT NULL, 
+
+publisher_id INT,  
+
+category_id INT, 
+
+author_name VARCHAR(20), 
+
+FOREIGN KEY(publisher_id) REFERENCES publishers(publisher_id) ON DELETE CASCADE, 
+
+FOREIGN KEY(category_id) REFERENCES categories(category_id) ON DELETE CASCADE, 
+
+CHECK(author_name IS NOT NULL)); 
+
+DESC books; 
+
+INSERT INTO books VALUES(10001,'One of us if lying',2024101,1997,1003,101,'Karen M'), 
+
+(10002,'The Reaper',2024102,2008,1001,101,'Runnyx'), 
+
+(10003,'That Night',2024103,2021,1003,102,'Nidhi'), 
+
+(10004,'Haunted Hill',2024104,2024,1002,102,'Ruskin Bond'), 
+
+(10005,'Sherlock Homes',2024105,2022,1004,102,'Arthur Conan'), 
+
+(10006,'Pride and Prejudice',2024106,1946,1003,103,'Jane Austen'), 
+
+(10007,'Classic Penguin',2024107,1988,1002,103,'Paul Buckley'), 
+
+(10008,'Technically Yours',2024108,2023,1001,104,'Denise Williams'), 
+
+(10009,'Best Wife',2024109,2000,1004,104,'Ajay Pandey'), 
+
+(10010,'Lord of the Rings',2024110,2014,1001,105,'Karen M'), 
+
+(10011,'Silent Patient',2024111,2020,1002,106,'Alex Mcfield'), 
+
+(10012,'Samsara',2024112,2022,1003,106,'Saksham Gard'), 
+
+(10013,'Chalk Man',2024113,2024,1004,106,'C J Tudor'), 
+
+(10014,'Highway Murders',2024114,2021,1002,106,'Sourabh Mukhrjee'), 
+
+(10015,'Hybrid Man',2024115,2015,1001,106,'Richard Ross'); 
+
+  
+
+  
+
+CREATE TABLE borrowings(borrow_id INT PRIMARY KEY, 
+
+user_id INT, 
+
+book_id INT, 
+
+borrow_date DATE NOT NULL, 
+
+return_date DATE NOT NULL, 
+
+FOREIGN key (user_id) REFERENCES users(user_id) ON DELETE CASCADE, 
+
+FOREIGN KEY(book_id) REFERENCES books(book_id) ON DELETE CASCADE); 
+
+DESC borrowings; 
+
+INSERT INTO borrowings VALUES(9001,2002,10007,'2024-06-24','2024-07-02'), 
+
+(9002,2005,10011,'2024-01-1','2024-07-09'), 
+
+(9003,2001,10002,'2024-06-21','2024-07-04'); 
+
+  
+
+  
+
+SELECT * FROM categories; 
+
+SELECT * FROM publishers; 
+
+SELECT * FROM users; 
+
+SELECT * FROM books; 
+
+SELECT * FROM borrowings; 
+
+  
+
+  
+
+SELECT * from books b  
+
+join publishers p on (b.publisher_id=p.publisher_id)  
+
+join categories c on (b.category_id=c.category_id)  
+
+join borrowings br on (b.book_id=br.book_id)  
+
+join users u on (br.user_id=u.user_id); 
+
+ 
+
+ 
