@@ -1,0 +1,346 @@
+
+--------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+import java.math.*;
+public class Armstrong {
+	public static void main(String[] args) {
+		int low,high,i,temp,j,rem,sum,temp1;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Lower Number: ");
+		low=var.nextInt();
+		System.out.println("Enter Higher Number: ");
+		high=var.nextInt();
+		for(i=low;i<=high;i++) {
+			sum=0;
+			temp=0;
+			temp1=i;
+			while(temp1!=0) {
+				temp++;
+				temp1=temp1/10;
+			}
+			temp1=i;
+			while(temp1!=0) {
+				rem=temp1%10;
+				sum=(int)(sum+Math.pow(rem,temp));
+				temp1=temp1/10;
+			}
+			if(sum==i) {
+				System.out.println("Armstrong Number are: "+sum);
+			}
+		}
+	}
+
+}
+
+------------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Compoundinterest {
+	public static void main(String[] args) {
+		int principle,time,i;
+		float rate,interest,temp,temp1=1;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Principle amount: ");
+		principle=var.nextInt();
+		System.out.println("Enter rate in percentage: ");
+		rate=var.nextFloat();
+		System.out.println("Enter time: ");
+		time=var.nextInt();
+		temp=1+(rate/100);
+		for(i=1;i<=time;i++) {
+			temp1=temp1*temp;
+		}
+		interest=(principle*temp1) -principle;
+		System.out.println("Compound Interest: "+interest);
+	}
+
+}
+----------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Diamondshapestar {
+	public static void main(String[] args) {
+		int num,temp,i,j;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Number: ");
+		num=var.nextInt();
+		for(i=1;i<=num;i++) {
+			temp=2*i-1;
+			for(j=i;j<num;j++) {
+				System.out.print(" ");
+			}
+			for(j=1;j<=temp;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+		for(i=num-1;i>=1;i--) {
+			temp=2*i-1;
+			for(j=0;j<num-i;j++) {
+				System.out.print(" ");
+			}
+			for(j=0;j<temp;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Factorial {
+	public static void main(String[] args) {
+		int num,i,fact=1;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Number: ");
+		num=var.nextInt();
+		for(i=1;i<=num;i++) {
+			fact=fact*i;
+		}
+		System.out.println("Factorial = "+fact);
+	}
+
+}
+----------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Fibonnaci {
+	public static void main(String[] args) {
+		int num,temp,i,sum=0;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Number: ");
+		num=var.nextInt();
+		temp=num*2+1;
+		int arr[]=new int[temp];
+		arr[0]=0;
+		arr[1]=1;
+		for(i=2;i<temp;i++) {
+			arr[i]=arr[i-1]+arr[i-2];
+		}
+		for(i=0;i<temp;i++) {
+			if(i%2==0) {
+				sum=sum+arr[i];
+			}
+			else {
+				continue;
+			}
+		}
+		System.out.println("Sum: "+sum);
+		
+	}
+
+}
+----------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Neon {
+	public static void main(String[] args) {
+		int num,sq,rem,sum=0;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter number: ");
+		num=var.nextInt();
+		sq=num*num;
+		while(sq!=0) {
+			rem=sq%10;
+			sum=sum+rem;
+			sq=sq/10;
+		}
+		if(sum==num) {
+			System.out.println("Neon Number");
+		}
+		else {
+			System.out.println("Not a Neon Number");
+		}
+	}
+	
+
+}
+-------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Numberreverse {
+	public static void main(String[] args) {
+		int num;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter number: ");
+		num=var.nextInt();
+		System.out.println("Reversed Number: ");
+		while(num!=0) {
+			System.out.print(num%10);
+			num=num/10;
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Perimeterrectangle {
+	public static void main(String[] args) {
+		int length,breadth,perimeter;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Length: ");
+		length=var.nextInt();
+		System.out.println("Enter Breadth: ");
+		breadth=var.nextInt();
+		perimeter=2*(length + breadth);
+		System.out.println("Perimeter = "+perimeter);
+	}
+
+}
+
+-----------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Power {
+	public static void main(String[] args) {
+		int base,pow,temp=1,i;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Base: ");
+		base=var.nextInt();
+		System.out.println("Enter Power: ");
+		pow=var.nextInt();
+		for(i=1;i<=pow;i++) {
+			temp=temp*base;
+		}
+		System.out.println(base+" to the power "+pow+" is : "+temp);
+	}
+
+}
+---------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Reversepyramidstar {
+	public static void main(String[] args) {
+		int num,temp,i,j;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Number: ");
+		num=var.nextInt();
+		for(i=num;i>0;i--) {
+			temp=i*2-1;
+			for(j=0;j<num-i;j++) {
+				System.out.print(" ");
+			}
+			for(j=0;j<temp;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+}
+--------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Righttrianglestar {
+	public static void main(String[] args) {
+		int num,i,j;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Number: ");
+		num=var.nextInt();
+		for(i=1;i<=num;i++) {
+			for(j=1;j<=i;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Simpleinterest {
+	public static void main(String[] args) {
+		int principle,time;
+		float rate,interest;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Principle amount: ");
+		principle=var.nextInt();
+		System.out.println("Enter rate in percentage: ");
+		rate=var.nextFloat();
+		System.out.println("Enter time: ");
+		time=var.nextInt();
+		interest=(principle*rate*time)/100;
+		System.out.println("Interest: "+interest);
+	}
+
+}
+-----------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Squarestar {
+	public static void main(String[] args) {
+		int num,i,j;
+		Scanner var=new Scanner(System.in);
+		num=var.nextInt();
+		for(i=0;i<num;i++) {
+			if(i==0 || i==num-1) {
+				for(j=0;j<num*2-2;j++) {
+					System.out.print("*");
+				}
+				System.out.println();
+			}
+			else {
+				System.out.print("*");
+				for(j=2;j<num*2-2;j++) {
+					System.out.print(" ");
+				}
+				System.out.println("*");
+			}
+		}
+	}
+
+}
+-------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Upperstartriangle {
+	public static void main(String[] args) {
+		int num,i,j;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Number: ");
+		num=var.nextInt();
+		for(i=0;i<num;i++) {
+			for(j=i;j<num-1;j++) {
+				System.out.print(" ");
+			}
+			for(j=0;j<=i;j++) {
+				System.out.print("*");
+			}
+			System.out.println();
+		}
+	}
+
+}
+----------------------------------------------------------------------------------------------
+package practiceday2;
+import java.util.*;
+public class Vowelconsonant {
+	public static void main(String[] args) {
+		char temp;
+		System.out.println("Enter alphabet: ");
+		Scanner var=new Scanner(System.in);
+		temp=var.next().charAt(0);
+		if(temp=='a' || temp=='e' || temp=='i' || temp=='o' || temp=='u' || temp=='A' || temp=='E' || temp=='I' || temp=='O' || temp=='U') {
+			System.out.println("Vowel");
+		}
+		else {
+			System.out.println("Consonant");
+		}
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,211 @@
+package practiceday1;
+
+public class Book {
+	String book_title;
+	int book_price;
+	public Book(String book_title,int book_price) {
+		this.book_title=book_title;
+		this.book_price=book_price;
+	}
+	public String getBook_title() {
+		return book_title;
+	}
+	public void setBook_title(String book_title) {
+		this.book_title = book_title;
+	}
+	public int getBook_price() {
+		return book_price;
+	}
+	public void setBook_price(int book_price) {
+		this.book_price = book_price;
+	}
+
+}
+
+---------------------------------------------------------------------------------------------
+package practiceday1;
+import java.util.*;
+public class Book2 {
+	public static Book[] createBooks(int num) {
+		int i;
+		Scanner var=new Scanner(System.in);
+		Book[] books =new Book[num];
+		for(i=0;i<num;i++) {
+			System.out.println("Enter book "+(i+1)+" title: ");
+			String book_title=var.next();
+			System.out.println("Enter book "+(i+1)+" price: ");
+			int book_price=var.nextInt();
+			books[i]=new Book(book_title,book_price);
+		}
+		return books;
+	}
+	public static void display(Book[] books) {
+		for(Book book:books) {
+			System.out.println("Title: "+book.getBook_title()+" Price: "+book.getBook_price());
+			System.out.println();
+		}
+	}
+	public static void main(String[] args) {
+		int num2;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter number of books: ");
+		num2=var.nextInt();
+		Book[] books =createBooks(num2);
+		display(books);
+		
+	}
+
+}
+---------------------------------------------------------------------------------------------------------
+package practiceday1;
+import java.util.*;
+public class Evennumbers {
+	public static void main(String[] args) {
+		int num,i;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter number: ");
+		num=var.nextInt();
+		if(num<=1) {
+			System.out.println("No even numbers");
+		}
+		else {
+			System.out.println("Even numbers are: ");
+			for(i=1;i<=num;i++) {
+				if(i%2==0) {
+					System.out.println(i);
+				}
+			}
+		}
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+package practiceday1;
+import java.util.*;
+public class Rectangle {
+	int length,breadth;
+	public Rectangle() {
+		this.length=0;
+		this.breadth=0;
+	}
+	public Rectangle(int length,int breadth) {
+		this.length=length;
+		this.breadth=breadth;
+	}
+	public int getLength() {
+		return length;
+	}
+	public void setLength(int length) {
+		this.length = length;
+	}
+	public int getBreadth() {
+		return breadth;
+	}
+	public void setBreadth(int breadth) {
+		this.breadth = breadth;
+	}
+	
+	
+	public int area() {
+		return length*breadth;
+		
+	}
+	void display() {
+		System.out.println("Length: "+length+" Breadth: "+breadth);
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+package practiceday1;
+
+public class Rectanglenew {
+	double length,breadth;
+	public Rectanglenew() {
+		this.length=1;
+		this.breadth=1;
+	}
+	public Rectanglenew(double length,double breadth) {
+		this.length=length;
+		this.breadth=breadth;
+	}
+	public double getLength() {
+		return length;
+	}
+	public void setLength(double length) {
+		if(length>0.0 && length<20.0) {
+			this.length=length;
+		}
+		else {
+			System.out.println("Invalid length");
+			
+		}
+	}
+	public double getBreadth() {
+		return breadth;
+	}
+	public void setBreadth(double breadth) {
+		if(breadth>0.0 && breadth<20.0) {
+			this.breadth=breadth;
+		}
+		else {
+			System.out.println("Invalid Breadth");
+			
+		}
+	}
+	public double perimeter() {
+		return 2*(length+breadth);
+		
+	}
+	public double area() {
+		return length*breadth;
+		
+	}
+	void display() {
+		System.out.println("Length: "+length+" Breadth: "+breadth);
+	}
+	
+
+}
+---------------------------------------------------------------------------------------------------
+package practiceday1;
+import java.util.*;
+public class TestRectangle {
+	public static void main(String[] args) {
+		int length,breadth,area1;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Length:");
+		length=var.nextInt();
+		System.out.println("Enter Length:");
+		breadth=var.nextInt();
+		Rectangle rect=new Rectangle(length,breadth);
+		area1=rect.area();
+		rect.display();
+		System.out.println("Area: "+area1);
+	}
+
+}
+
+----------------------------------------------------------------------------------------------------
+
+package practiceday1;
+import java.util.*;
+public class TestRectanglenew {
+	public static void main(String[] args) {
+		double length,breadth,area1,peri;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Length:");
+		length=var.nextDouble();
+		System.out.println("Enter Breadth:");
+		breadth=var.nextDouble();
+		Rectanglenew rect=new Rectanglenew(length,breadth);
+		area1=rect.area();
+		peri=rect.perimeter();
+		rect.display();
+		System.out.println("Area: "+area1);
+		System.out.println("Perimeter: "+peri);
+	}
+
+}
+
+
+
