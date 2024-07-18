@@ -1,4 +1,83 @@
 package practiceday1;
+import java.util.*;
+public class Evennumbers {
+	public static void main(String[] args) {
+		int num,i;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter number: ");
+		num=var.nextInt();
+		if(num<=1) {
+			System.out.println("No even numbers");
+		}
+		else {
+			System.out.println("Even numbers are: ");
+			for(i=1;i<=num;i++) {
+				if(i%2==0) {
+					System.out.println(i);
+				}
+			}
+		}
+	}
+
+}
+
+---------------------------------------------------------------------------------------------
+package practiceday1;
+import java.util.*;
+public class Rectangle {
+	int length,breadth;
+	public Rectangle() {
+		this.length=0;
+		this.breadth=0;
+	}
+	public Rectangle(int length,int breadth) {
+		this.length=length;
+		this.breadth=breadth;
+	}
+	public int getLength() {
+		return length;
+	}
+	public void setLength(int length) {
+		this.length = length;
+	}
+	public int getBreadth() {
+		return breadth;
+	}
+	public void setBreadth(int breadth) {
+		this.breadth = breadth;
+	}
+	
+	
+	public int area() {
+		return length*breadth;
+		
+	}
+	void display() {
+		System.out.println("Length: "+length+" Breadth: "+breadth);
+	}
+
+}
+------------------------------------------------------------------------------------------
+package practiceday1;
+import java.util.*;
+public class TestRectangle {
+	public static void main(String[] args) {
+		int length,breadth,area1;
+		Scanner var=new Scanner(System.in);
+		System.out.println("Enter Length:");
+		length=var.nextInt();
+		System.out.println("Enter Length:");
+		breadth=var.nextInt();
+		Rectangle rect=new Rectangle(length,breadth);
+		area1=rect.area();
+		rect.display();
+		System.out.println("Area: "+area1);
+	}
+
+}
+-------------------------------------------------------------------------------------------------------
+
+package practiceday1;
 
 public class Book {
 	String book_title;
@@ -57,77 +136,14 @@ public class Book2 {
 
 }
 ---------------------------------------------------------------------------------------------------------
-package practiceday1;
-import java.util.*;
-public class Evennumbers {
-	public static void main(String[] args) {
-		int num,i;
-		Scanner var=new Scanner(System.in);
-		System.out.println("Enter number: ");
-		num=var.nextInt();
-		if(num<=1) {
-			System.out.println("No even numbers");
-		}
-		else {
-			System.out.println("Even numbers are: ");
-			for(i=1;i<=num;i++) {
-				if(i%2==0) {
-					System.out.println(i);
-				}
-			}
-		}
-	}
 
-}
 ----------------------------------------------------------------------------------------------------------
-package practiceday1;
-import java.util.*;
-public class Rectangle {
-	int length,breadth;
-	public Rectangle() {
-		this.length=0;
-		this.breadth=0;
-	}
-	public Rectangle(int length,int breadth) {
-		this.length=length;
-		this.breadth=breadth;
-	}
-	public int getLength() {
-		return length;
-	}
-	public void setLength(int length) {
-		this.length = length;
-	}
-	public int getBreadth() {
-		return breadth;
-	}
-	public void setBreadth(int breadth) {
-		this.breadth = breadth;
-	}
-	
-	
-	public int area() {
-		return length*breadth;
-		
-	}
-	void display() {
-		System.out.println("Length: "+length+" Breadth: "+breadth);
-	}
 
-}
 ----------------------------------------------------------------------------------------------------------
 package practiceday1;
 
 public class Rectanglenew {
-	double length,breadth;
-	public Rectanglenew() {
-		this.length=1;
-		this.breadth=1;
-	}
-	public Rectanglenew(double length,double breadth) {
-		this.length=length;
-		this.breadth=breadth;
-	}
+	double length=1,breadth=1;
 	public double getLength() {
 		return length;
 	}
@@ -166,24 +182,9 @@ public class Rectanglenew {
 	
 
 }
----------------------------------------------------------------------------------------------------
-package practiceday1;
-import java.util.*;
-public class TestRectangle {
-	public static void main(String[] args) {
-		int length,breadth,area1;
-		Scanner var=new Scanner(System.in);
-		System.out.println("Enter Length:");
-		length=var.nextInt();
-		System.out.println("Enter Length:");
-		breadth=var.nextInt();
-		Rectangle rect=new Rectangle(length,breadth);
-		area1=rect.area();
-		rect.display();
-		System.out.println("Area: "+area1);
-	}
 
-}
+---------------------------------------------------------------------------------------------------
+
 
 ----------------------------------------------------------------------------------------------------
 
@@ -197,7 +198,10 @@ public class TestRectanglenew {
 		length=var.nextDouble();
 		System.out.println("Enter Breadth:");
 		breadth=var.nextDouble();
-		Rectanglenew rect=new Rectanglenew(length,breadth);
+		Rectanglenew rect=new Rectanglenew();
+		rect.setLength(length);
+		rect.setBreadth(breadth);
+		//System.out.println();
 		area1=rect.area();
 		peri=rect.perimeter();
 		rect.display();
@@ -206,6 +210,228 @@ public class TestRectanglenew {
 	}
 
 }
+-----------------------------------------------------------------------------------------------------
+package practiceday1;
 
+public class Date {
+	int day;
+	int month;
+	int year;
+	public Date(int day, int month, int year) {
+		this.day = day;
+		this.month = month;
+		this.year = year;
+	}
+	public int getDay() {
+		return day;
+	}
+	public void setDay(int day) {
+		if(Validity(day,this.month,this.year)) {
+			this.day=day;
+		}
+		else {
+			System.out.println("Invalid Day");
+		}
+	}
+	public int getMonth() {
+		return month;
+	}
+	public void setMonth(int month) {
+		if(Validity(this.day,month,this.year)) {
+			this.month=month;
+		}
+		else {
+			System.out.println("Invalid Month");
+		}
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		if(Validity(this.day,this.month,year)) {
+			this.year=year;
+		}
+		else {
+			System.out.println("Invalid Year");
+		}
+	}
+	public boolean Validity(int day,int month,int year) {
+		if(day<1 || day>31 || month<1 || month>12  || year<1) {
+			return false;
+		}
+		return true;
+	}
+	private int daysinmonth(int month,int year) {
+		switch (month) {
+		case 4: case 6: case 9: case 11:
+			return 30;
+		case 2:
+			return(Leapyear(year)?29:28);
+		default:
+			return 31;
+		}
+	}
+	public boolean Leapyear(int year) {
+		if((year%4==0 && year%100!=0) || year%400==0) {
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public void Newdate(int days) {
+		while(days>0) {
+			int daysleft=daysinmonth(this.month,this.year)-this.day;
+			if(days<=daysleft) {
+				this.day=this.day+days;
+				days=0;
+			}
+			else {
+				days=days-(daysleft+1);
+				this.day=1;
+				if(this.month==12) {
+					this.month=1;
+					this.year++;
+				}
+				else {
+					this.month++;
+				}
+			}
+			
+		}
+	}
+	@Override
+	public String toString() {
+		return String.format("%02d/%02d/%04d",day,month,year);
+	}
+	
+
+}
+-----------------------------------------------------------------------------------------------------------
+
+
+package practiceday1;
+import java.util.*;
+public class Employee {
+	int empno;
+	String empname;
+	Date joiningdate;
+	public Employee(int empno, String empname, Date joiningdate) {
+		this.empno = empno;
+		this.empname = empname;
+		this.joiningdate = joiningdate;
+	}
+	void display() {
+		System.out.println("Employee ID: "+empno+" Employee Name: "+empname+" Joining Date: "+joiningdate);
+	}
+	public static void main(String[] args) {
+		Employee[] emp=new Employee[5];
+		emp[0]=new Employee(101,"Aniket",new Date(15,5,2000));
+		emp[1]=new Employee(102,"Kiran",new Date(22,2,1980));
+		emp[2]=new Employee(103,"Umesh",new Date(11,11,1998));
+		emp[3]=new Employee(104,"Raghu",new Date(1,12,2001));
+		emp[4]=new Employee(104,"Rachit",new Date(25,10,2003));
+		for(int i=0;i<5;i++) {
+			emp[i].display();
+		}
+	}
+
+}
+
+
+-------------------------------------------------------------------------------------------------------------
+package practiceday1;
+
+public class Vehicle {
+	String manufacturer;
+	String model;
+	int year;
+	public String getManufacturer() {
+		return manufacturer;
+	}
+	
+	public Vehicle(String manufacturer, String model, int year) {
+		super();
+		this.manufacturer = manufacturer;
+		this.model = model;
+		this.year = year;
+	}
+
+	public void setManufacturer(String manufacturer) {
+		this.manufacturer = manufacturer;
+	}
+	public String getModel() {
+		return model;
+	}
+	public void setModel(String model) {
+		this.model = model;
+	}
+	public int getYear() {
+		return year;
+	}
+	public void setYear(int year) {
+		this.year = year;
+	}
+	void displayDetails() {
+		System.out.println("Manufactuter is "+manufacturer);
+		System.out.println("Model is "+model);
+		System.out.println("Year is "+year);
+	}
+	
+
+
+}
+
+------------------------------------------------------------------------------------------------------------
+package practiceday1;
+
+class car extends Vehicle{
+	int seatingCapacity;
+	public car(String manufacturer, String model,int year,int seatingCapacity) {
+		super(manufacturer,model,year);
+		this.seatingCapacity=seatingCapacity;
+		
+	}
+	public int getSeatingCapacity() {
+		return seatingCapacity;
+	}
+	public void setSeatingCapacity(int seatingCapacity) {
+		this.seatingCapacity = seatingCapacity;
+	}
+	@Override
+	void displayDetails() {
+		super.displayDetails();
+		System.out.println("Seating Capacity is "+seatingCapacity);
+	}
+	
+	
+}
+
+----------------------------------------------------------------------------------------------------------
+package practiceday1;
+
+class Motorcycle extends Vehicle{
+	double EngineCapacity;
+
+	public Motorcycle(String manufacturer, String model, int year, double engineCapacity) {
+		super(manufacturer, model, year);
+		EngineCapacity = engineCapacity;
+	}
+
+	public double getEngineCapacity() {
+		return EngineCapacity;
+	}
+
+	public void setEngineCapacity(double engineCapacity) {
+		EngineCapacity = engineCapacity;
+	}
+
+	@Override
+	void displayDetails() {
+		super.displayDetails();
+		System.out.println("Engine Capacity is "+EngineCapacity);
+	}
+	
+}
 
 
