@@ -435,3 +435,80 @@ class Motorcycle extends Vehicle{
 }
 
 
+------------------------------------------------------------------------------------------------------------------
+package practiceday1; 
+public class Emp { 
+	String name; 
+	int points; 
+	static int empCount = 0; 
+	public Emp() { 
+		empCount++; 
+	} 
+	public String getName() { 
+		return name; 
+	} 
+	public void setName(String name) { 
+		this.name = name; 
+	} 
+	public int getPoints() { 
+		return points; 
+	} 
+	public void setPoints(int points) { 
+		this.points = points; 
+	} 
+} 
+
+----------------------------------------------------------------------------------------------------------------
+package practiceday1;
+
+public class PerformanceRating {
+	static final int outstanding = 5; 
+	static final int good = 4; 
+	static final int average = 3; 
+	static final int poor = 2; 
+	public static int isPerformance(Emp e) { 
+		int points = e.getPoints(); 
+		if (points >= 80 && points<=100) { 
+			return outstanding; 
+		} else if (points >= 60 && points<=79) { 
+			return good; 
+		} else if (points >= 50 && points<=59) { 
+			return average; 
+		} else if (points >= 1 && points<=49) { 
+			return poor; 
+		} 
+		return 0; 
+	} 
+}
+
+
+-------------------------------------------------------------------------------------------------------------------------
+package practiceday1;
+
+public class PerformanceCalculator {
+	public static void main(String[] args) { 
+		PerformanceRating perf = new PerformanceRating(); 
+		Emp emp1 = new Emp(); 
+		Emp emp2 = new Emp(); 
+		Emp emp3 = new Emp(); 
+		Emp emp4 = new Emp(); 
+		Emp emp5 = new Emp(); 
+		System.err.println("Total Number Of Employee :  " + Emp.empCount + " and their Ratings are: "); 
+		System.out.println(""); 
+		emp1.setName("Aniket"); 
+		emp1.setPoints(85); 
+		System.out.println(emp1.getName() + "  Has Performed With a Rating  " + perf.isPerformance(emp1)); 
+		emp2.setName("Kiran"); 
+		emp2.setPoints(72); 
+		System.out.println(emp2.getName() + "  Has Performed With a Rating  " + perf.isPerformance(emp2)); 
+		emp3.setName("Raghu"); 
+		emp3.setPoints(56); 
+		System.out.println(emp3.getName() + "  Has Performed With a Rating  " + perf.isPerformance(emp3)); 
+		emp4.setName("Umesh"); 
+		emp4.setPoints(20); 
+		System.out.println(emp4.getName() + "  Has Performed With a Rating  " + perf.isPerformance(emp4)); 
+		System.out.println("------------------------------------------------------------------------"); 
+		} 
+
+}
+
