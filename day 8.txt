@@ -1,0 +1,296 @@
+package practicsday8;
+import java.util.Scanner;
+import java.util.Stack;
+public class EvaluateExp {
+	public static int evaluate(String expression) {
+		char[] tokens=expression.toCharArray();
+		Stack<Integer> values=new Stack<>();
+		Stack<Character> operators=new Stack<>();
+		for(int i=0;i<tokens.length;i++) {
+			if(tokens[i]==' ') {
+				continue;
+			}
+			if(tokens[i]>='0' && tokens[i]<='9') {
+				StringBuilder sbuf=new StringBuilder();
+				while(i<tokens.length && tokens[i]>='0' && tokens[i]<='9') {
+					sbuf.append(tokens[i++]);
+				}
+				values.push(Integer.parseInt(sbuf.toString()));
+				i--;
+			}
+			else if(tokens[i]=='+' || tokens[i]=='-' || tokens[i]=='*' || tokens[i]=='/'){
+				while(!operators.isEmpty() && hasPrecedence(tokens[i],operators.peek())) {
+					values.push(applyOp(operators.pop(),values.pop(),values.pop()));
+				}
+				operators.push(tokens[i]);
+			}
+		}
+		while(!operators.isEmpty()) {
+			values.push(applyOp(operators.pop(),values.pop(),values.pop()));
+		}
+		return values.pop();
+	}
+	public static boolean hasPrecedence(char op1,char op2) {
+		if(op2=='(' || op2 ==')') {
+			return false;
+		}
+		if((op1=='*' || op1=='/')&& (op2=='+' || op2=='-')) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	public static int applyOp(char op,int b,int a) {
+		switch(op) {
+		case '+':
+			return a+b;
+		case '-':
+			return a-b;
+		case '*':
+			return a*b;
+		case '/':
+			if(b==0) {
+				throw new UnsupportedOperationException("cannot divide by zero");
+			}
+			return a/b;
+		}
+		return 0;
+		
+	}
+	public static void main(String[] args) {
+		System.out.println("Enter Expression: ");
+		Scanner sc=new Scanner(System.in);
+		String exp=sc.nextLine();
+		System.out.println(EvaluateExp.evaluate(exp));
+	}
+}
+
+--------------------------------------------------------------------------------------------------------------
+package practicsday8;
+import java.util.Scanner;
+import java.util.Stack;
+public class EvenStack {
+	public static void main(String[] args) {
+		Stack<Integer> stack=new Stack<>();
+		System.out.println("Enter Number of elements is stack: ");
+		Scanner sc=new Scanner(System.in);
+		int num=sc.nextInt();
+		for(int i=0;i<num;i++) {
+			System.out.println("Enter Element value:");
+			int val=sc.nextInt();
+			stack.push(val);
+		}
+		if(stack.peek()%2==0) {
+			System.out.println("true");
+		}
+		else {
+			System.out.println("false");
+		}
+	}
+	
+}
+--------------------------------------------------------------------------------------------------------
+package practicsday8;
+import java.util.Scanner;
+import java.util.Stack;
+public class MinStack {
+	public static void main(String[] args) {
+		Stack<Integer> stack=new Stack<>();
+		System.out.println("Enter Number of elements is stack: ");
+		Scanner sc=new Scanner(System.in);
+		int num=sc.nextInt();
+		for(int i=0;i<num;i++) {
+			System.out.println("Enter Element value:");
+			int val=sc.nextInt();
+			stack.push(val);
+		}
+		int temp=stack.peek();
+		for(int i=0;i<num;i++) {
+			if(temp>stack.peek()) {
+				temp=stack.peek();
+			}
+			stack.pop();
+		}
+		System.out.println("Min: "+temp);
+	}
+	
+}
+----------------------------------------------------------------------------------------------
+package practicsday8;
+import java.util.Stack;
+public class ReverseStack {
+	public static void reverseStack(Stack<Integer> stack) {
+		if(!stack.isEmpty()) {
+			int bottom=popBottom(stack);
+			reverseStack(stack);
+			stack.push(bottom);
+		}
+	}
+	public static int popBottom(Stack<Integer> stack) {
+		int top=stack.pop();
+		if(stack.isEmpty()) {
+			return top;
+		}
+		else {
+			int bottom=popBottom(stack);
+			stack.push(top);
+			return bottom;
+		}
+	}
+	public static void main(String[] args) {
+		Stack<Integer> stack=new Stack<>();
+		stack.push(1);
+		stack.push(2);
+		stack.push(3);
+		stack.push(4);
+		stack.push(5);
+		System.out.println("Original stack: "+stack);
+		System.out.println();
+		reverseStack(stack);
+		System.out.println("Reversed Stack; "+stack);
+	}
+
+}
+---------------------------------------------------------------------------------------------------
+package practicsday8;
+import java.util.Stack;
+import java.util.*;
+public class ReverseStringStack {
+	public static void main(String[] args) {
+		Stack<String> revstr=new Stack<String>();
+		Scanner sc=new Scanner(System.in);
+		String str;
+		System.out.println("Enter String: ");
+		str=sc.next();
+		char[] charArray=str.toCharArray();
+		for(int i=0;i<str.length();i++) {
+			revstr.push(Character.toString(charArray[i]));
+			
+		}
+		System.out.println("\nReversed String: ");
+		for(int i=0;i<str.length();i++) {
+			System.out.print(revstr.pop()) ;
+			
+		}
+	}
+	
+	
+}
+------------------------------------------------------------------------------------------------------
+package practicsday8;
+
+public class StackusingArray {
+	int maxSize;
+	String[] stackArray;
+	int top;
+	public StackusingArray(int size) {
+		maxSize=size;
+		stackArray=new String[maxSize];
+		top=-1;
+		
+	}
+	void push(String value) {
+		if(top==maxSize-1) {
+			System.out.println("Stack Overflow");
+		}
+		else {
+			top++;
+			stackArray[top]=value;
+		}
+	}
+	public String pop() {
+		if(top==-1) {
+			System.out.println("Stack Underflow");
+			return null;
+		}
+		else {
+			System.out.println("\nPopped Element: "+stackArray[top--]+"\n");
+			return null;
+		}
+	}
+	void display() {
+		if(top==-1) {
+			System.out.println("Stack is empty");
+		}
+		else {
+			for(int i=0;i<top+1;i++) {
+				System.out.println(stackArray[i]);
+			}
+		}
+	}
+	public static void main(String[] args) {
+		StackusingArray stack=new StackusingArray(10);
+		stack.push("Hello");
+		stack.push("world");
+		stack.push("java");
+		stack.push("Programming");
+		System.out.println("Original Stack: ");
+		stack.display();
+		stack.pop();
+		stack.display();
+	}
+
+}
+---------------------------------------------------------------------------------------------------------
+package practicsday8;
+class node{
+	double data;
+	node next;
+	node (double data){
+		this.data=data;
+		this.next=null;
+		
+	}
+	
+}
+class Stack{
+	node top;
+	Stack(){
+		this.top=null;
+	}
+	void push(double data) {
+		node newNode=new node(data);
+		newNode.next=top;
+		top=newNode;
+	}
+	public double pop() {
+		if(top==null) {
+			System.out.println("Stack Underflow");
+			return -1;
+		}
+		else {
+			double value=top.data;
+			top=top.next;
+			return value;
+			
+		}
+	}
+	void display() {
+		node current=top;
+		while(current!=null) {
+			System.out.println(current.data);
+			current=current.next;
+		}
+	}
+}
+
+public class StackusingLinkedList {
+	public static void main(String[] args) {
+		Stack stack=new Stack();
+		stack.push(10.0);
+		stack.push(20.0);
+		stack.push(30.0);
+		stack.push(40.0);
+		System.out.println("Original Stack: ");
+		stack.display();
+		System.out.println("\nPopped Element: "+stack.pop());
+		
+		System.out.println();
+		stack.display();
+		System.out.println("\nPopped Element: "+stack.pop());
+		System.out.println();
+		stack.display();
+		
+	}
+	}
