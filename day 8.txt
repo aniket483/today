@@ -294,3 +294,80 @@ public class StackusingLinkedList {
 		
 	}
 	}
+---------------------------------------------------------------------------------------------------------
+package practicsday8;
+
+public class QueueusingArray {
+	int front;
+	int rear;
+	int capacity;
+	int[] queue;
+	public QueueusingArray(int size) {
+		capacity=size;
+		queue=new int[capacity];
+		front=-1;
+		rear=-1;
+		
+	}
+	public boolean isEmpty() {
+		return front==-1;
+	}
+	public boolean isFull() {
+		return (rear+1)%capacity==front;
+	}
+	void enqueue(int item) {
+		if(isFull()) {
+			System.out.println("Queue is Full");
+		}
+		if(isEmpty()) {
+			front=0;
+		}
+		rear=(rear+1)%capacity;
+		queue[rear]=item;
+	}
+	public int dequeue() {
+		if(isEmpty()) {
+			System.out.println("Queue is Empty");
+			return -1;
+			
+		}
+		int item=queue[front];
+		if(front==rear) {
+			front=rear=-1;
+		}
+		else {
+			front=(front+1)%capacity;
+		}
+		return item;
+	}
+	void display() {
+		if(isEmpty()) {
+			System.out.println("Queue is Empty");
+			return;
+		}
+		System.out.println("Queue: ");
+		int i=front;
+		while(true) {
+			System.out.println(queue[i]+" ");
+			if(i==rear) {
+				break;
+			}
+			i=(i+1)%capacity;
+		}
+		System.out.println();
+	}
+	public static void main(String[] args) {
+		QueueusingArray queueArray=new QueueusingArray(4);
+		queueArray.enqueue(10);
+		queueArray.enqueue(20);
+		queueArray.enqueue(30);
+		queueArray.enqueue(40);
+		System.out.println("Original Queue: ");
+		queueArray.display();
+		System.out.println();
+		queueArray.dequeue();
+		System.out.println("Queue after removing first element: ");
+		queueArray.display();
+	}
+
+}
