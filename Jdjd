@@ -1,0 +1,49 @@
+Lot us first look at how to implement transaction using JDBC API
+
+For the Employee Management scenario, the code given below is used to retrieve employee record based on the employee id from the database using plas
+
+Now the development team would like to enable transaction support explicitly instead of the auto-commit mode that the JDBC driver uses by default
+
+public void insert (Employee employee) (
+
+// Assume code to set database properties with appropriate details
+
+try(
+
+Class.forName (driver)://register driver
+
+con DriverManager.getConnection (url, username, password)://create connection
+
+String query "insert into // Create prepared statement
+
+//line 1 employee values (7.7.7)"
+
+ps connection.prepareStatement(query);
+
+ps.setLong (1, employee.getEmpId()): ps.setString(2, omployee.gotEmpName());
+
+ps.setString(3, employee.getDepartment()):
+
+// Execute query
+
+ps.executeUpdate())
+
+//1inm 2
+
+catch (Exception e) ( //line 3
+
+e.printStackTrace();
+
+Finally( Assume code to close prepared statement, resultset and connection
+
+1.//turn off auto-commit con.setAutoCommit(false);
+
+11. // If there is any error.
+
+conn.rollback():
+
+iii. // If there is conn.commit();
+
+iv. //turn on auto-commit con.setAutoCommit(true);
+
+In order to complete the above code rearrange the above statement
