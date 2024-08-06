@@ -1,0 +1,212 @@
+Ques - Stream<List<String>> iStr=Stream.of(Arrays.asList("1","John"),Arrays.asList("2",null));
+		Stream<<String>nInst=iStr.flatMapToInt((x)->x.stream());
+		nInst.forEach(System.out::print);
+
+Ans - Compilation Error
+
+--------------------------------------------------------------------------------------------------------------
+which interface is used to create a stream for the custom sources
+
+iterator
+-----------------------------------------------------------------------------------------------------
+which syntax reresents a class constructor reference?
+
+Class::new
+------------------------------------------------------------------------------------------------------------
+which format is used for localdate in java.time api?
+
+YYYY-MM-DD
+
+-------------------------------------------------------------------------------------
+Purpose of Java community process?
+
+produces java specification request
+develops new java standards
+provides early access to specification
+----------------------------------------------------------------------------------
+
+public class OutputSuperClass {
+	public OutputSuperClass() {
+		System.out.println("super");
+	}
+	
+}
+
+public class OutputSubClass extends OutputSuperClass{
+	public OutputSubClass() {
+		System.out.println("sub1");
+	}
+	public OutputSubClass(int x) {
+		System.out.println("sub2");
+	}
+	public OutputSubClass(int x,int y) {
+		System.out.println("sub3");
+	}
+	public static void main(String[] args) {
+		new OutputSubClass(1);
+	}
+}
+
+
+
+Ans - 
+super
+sub2
+
+----------------------------------------------------------------------
+US common string date format
+
+MMMM d,YYYY
+--------------------------------------------------
+enumeration that holds time units such as half days,hours
+
+ChronoUnit
+-----------------------------------------------------------------------------
+which utility class provide ready made redux algorithms that can accumulate, summarize and aggregate elements into collections
+
+Collectors
+----------------------------------------------------------
+which are the following expression will compile successfully?
+
+number1->{return number1.isEvenNumber()}
+(int number1,int number2)->number2.isEvenNumber()
+-------------------------------------------------------------------------
+
+Lot us first look at how to implement transaction using JDBC API
+For the Employee Management scenario, the code given below is used to retrieve employee record based on the employee id from the database using plas
+Now the development team would like to enable transaction support explicitly instead of the auto-commit mode that the JDBC driver uses by default
+public void insert (Employee employee) (
+// Assume code to set database properties with appropriate details
+try(
+Class.forName (driver)://register driver
+con DriverManager.getConnection (url, username, password)://create connection
+String query "insert into // Create prepared statement
+//line 1 employee values (7.7.7)"
+ps connection.prepareStatement(query);
+ps.setLong (1, employee.getEmpId()): ps.setString(2, omployee.gotEmpName());
+ps.setString(3, employee.getDepartment()):
+// Execute query
+ps.executeUpdate())
+//1inm 2
+catch (Exception e) ( //line 3
+e.printStackTrace();
+
+
+Finally( Assume code to close prepared statement, resultset and connection
+1.//turn off auto-commit con.setAutoCommit(false);
+11. // If there is any error.
+conn.rollback():
+iii. // If there is conn.commit();
+iv. //turn on auto-commit con.setAutoCommit(true);
+
+In order to complete the above code rearrange the above statement
+
+Ans - 
+
+Order - 1 3 2 4
+
+---------------------------------------------------------------------------------------
+Which annotation represents a supplier of results?
+
+@Supplier
+----------------------------------------------------------------
+public class VarScope {
+	int i1;
+	public static void main(String[] args) {
+		VarScope scope=new VarScope();
+		scope.printVar();//line1
+		int i2=i1;//line2
+		int i3=i2;//line3
+	}
+	private void printVar() {
+		System.out.println(i1);
+	}
+}
+Which line causes a compilation error/
+
+Ans - line2
+------------------------------------------------------------------------
+public class VarScope {
+	int var;
+	public static void main(String[] args) {
+		int var=10;
+		VarScope scope=new VarScope();
+		scope.var=var+2;
+		scope.adjustVar(scope.var+2);
+		System.out.println(var);
+		
+	}
+	private void adjustVar(int var) {
+		var=var+2;
+	}
+}
+What is the output?
+
+Ans - 10
+--------------------------------------------------------------------------------
+if we intend a SAM interface to be used by lambdas we can optionally mark it as
+
+Ans - @FunctionalInterface
+----------------------------------------------------------------------------
+public class Computer {
+	private Computer() {}
+	class CPU{
+		private void performWork() {
+			System.out.println("cpu working ");
+		}
+		
+	}
+	public static void main(String[] args) {
+		//insert code here
+	}
+	
+}
+
+Ans - new Computer().new CPU().performWork();
+--------------------------------------------------------------------------
+which of the following is used to perform java input and output operations
+
+ans - streams
+------------------------------------------------------------------------------------
+public class LOCALE_CLASS{
+	public static void main(String[] args) {
+		Locale obj=new Locale("India");
+		System.out.println(obj.getCountry());
+	}
+	
+	
+}
+
+Ans - Nothing is displayed
+---------------------------------------------------------------------------------------------
+which of the following are the static instance fields in the System classin the java.lang package?
+
+ans - in,out,err
+-----------------------------------------------------------------------------------------------
+public class DateTimeSample{
+	public static void main(String[] args) {
+		Period period=Period.of(1, 5,2001);
+		System.out.println(period.getDays()+" "+period.getMonths());
+	}
+	
+	
+}
+
+Ans - 2001 5
+---------------------------------------------------------------------------------------------------
+select all spliterator characteristics|state A stream
+
+ans - ordered,distinct,sorted,concurrent
+----------------------------------------------------------------------------------\
+select all stateful intermediate operations.
+
+ans - distinct, sorted
+------------------------------------------------------------------------------------------------------
+which interface is used to create your own collectors
+
+ans - collector interface
+-----------------------------------------------------------------------------------------------------
+select all that are required for stream pipeline.
+
+ans- source,zero or more intermediate opeartions, terminal operation
+-------------------------------------------------------------------------------------------------
