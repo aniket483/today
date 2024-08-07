@@ -1,0 +1,143 @@
+
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+/**
+ * Servlet implementation class admin
+ */
+public class admin extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public admin() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String email=request.getParameter("email");
+		String password=request.getParameter("password");
+		System.out.println(email);
+		System.out.println(password);
+		if(email.equals("admin") && password.equals("admin")){
+			System.out.println("success");
+			response.sendRedirect("adminhome.jsp");
+		}
+		else {
+			System.out.println("unsuccess");
+			response.sendRedirect("login.jsp");
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Health Logger<br>
+Developed by Aniket Singh<br><br>
+
+<a href="patientform.jsp"><button type="button" >Manage Patients</button><br><br>
+<a href="vitalform.jsp"><button type="button" >Manage Vitals</button>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Health Logger<br>
+Developed by Aniket Singh<br>
+<br>
+<a href="login.jsp"><button type="button" >Doctor Login</button>
+</a>
+</body>
+</html>
+---------------------------------------------------------------------------------------------
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Health Logger<br>
+Device Login<br><br>
+<form action=admin>
+<table>
+<tr><td>Enter Email</td></tr>
+<tr><td><input type=text name=email size=20></td></tr>
+<tr><td>Enter Password</td></tr>
+<tr><td><input type=text name=password size=20></td></tr>
+</table>
+<button type="submit" >Doctor Login</button>
+</form>
+</body>
+</html>
+-----------------------------------------------------------------------------------------------
+
+
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+Health Logger<br>
+Add/Update Patient Information<br><br>
+<table>
+<tr><td>Name</td></tr>
+<tr><td><input type=text name=patname size=20></td></tr>
+<tr><td>Email</td></tr>
+<tr><td><input type=text name=patemail size=20></td></tr>
+<tr><td>Phone</td></tr>
+<tr><td><input type=number name=patphone size=20></td></tr>
+<tr><td>Age</td></tr>
+<tr><td><input type=number name=patage size=20></td></tr>
+<tr><td>Diagnosis</td></tr>
+<tr><td><input type=text name=patdiagnosis size=20></td></tr>
+<tr><td>Remark</td></tr>
+<tr><td><input type=text name=patremark size=100></td></tr>
+</table>
+</body>
+</html>
+-------------------------------------------------------------------------------------------------
+
+durgasoft.com
+
+
